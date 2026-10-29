@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chinchilla — velvet figurines with a porcelain soul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- WebGL scene: background, wordmark and chinchilla share one shader so the glaze wave runs through all of them -->
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <main class="stage" id="stage">
+    <div class="grid" aria-hidden="true">
+      <i style="--x:96"></i><i style="--x:480"></i><i style="--x:1440"></i><i style="--x:1824"></i>
+    </div>
+
+    <h1 class="wm" id="wordmark" aria-label="Chinchilla">
+      <span class="wm__sharp" data-part="sharp">Ch<em>i</em>n</span>
+      <span class="wm__blur" data-part="blur">ch<em>il</em>la</span>
+      <sup class="wm__reg">®</sup>
+    </h1>
+
+    <!-- layout slot: the shader draws the chinchilla into this box -->
+    <div class="fig" id="fig" aria-hidden="true">
+      <img class="fig__img" src="assets/cobalt.png" alt="" data-i="0">
+      <img class="fig__img" src="assets/rose.png" alt="" data-i="1">
+      <img class="fig__img" src="assets/celadon.png" alt="" data-i="2">
+      <img class="fig__img" src="assets/amber.png" alt="" data-i="3">
+    </div>
+
+    <div class="sparkles" aria-hidden="true">
+      <svg style="--x:1839;--y:318;--s:24;--d:0s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+      <svg style="--x:1600;--y:560;--s:28;--d:.8s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+      <svg style="--x:1730;--y:700;--s:20;--d:1.6s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+      <svg style="--x:132;--y:552;--s:22;--d:.4s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+      <svg style="--x:1264;--y:206;--s:18;--d:1.2s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+      <svg style="--x:577;--y:979;--s:16;--d:2s" viewBox="0 0 24 24"><path d="M12 0C12.6 7.2 16.8 11.4 24 12 16.8 12.6 12.6 16.8 12 24 11.4 16.8 7.2 12.6 0 12 7.2 11.4 11.4 7.2 12 0Z"/></svg>
+    </div>
+
+    <header class="nav">
+      <div class="nav__left">
+        <a class="logo" href="#">Ch<em>i</em>nchilla</a>
+        <nav class="links">
+          <a class="is-current" href="#">+&nbsp;&nbsp;Home</a>
+          <a href="#">Collection</a>
+          <a href="#">Atelier</a>
+          <a href="#">Journal</a>
+        </nav>
+      </div>
+      <div class="nav__actions">
+        <a class="pill pill--glaze" href="#"><span>✦</span>Shop the series</a>
+        <a class="pill" href="#"><span>✦</span>Custom order</a>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p class="lead">Handmade velvet figurines with a porcelain soul</p>
+      <p class="body" id="body-copy">Every chinchilla is flocked by hand, painted in cobalt and numbered — no two are alike</p>
+      <ol class="menu" id="menu" aria-label="Choose a glaze"></ol>
+      <p class="hint">Scroll to explore ↓</p>
+    </section>
+
+    <aside class="card">
+      <div class="card__thumb" id="thumb">
+        <img src="assets/cobalt.png" alt="Cobalt chinchilla" class="is-on">
+        <img src="assets/rose.png" alt="Rose chinchilla">
+        <img src="assets/celadon.png" alt="Celadon chinchilla">
+        <img src="assets/amber.png" alt="Amber chinchilla">
+      </div>
+      <div class="card__content">
+        <div>
+          <h2 class="card__title" id="card-title">Cobalt series —<br>12 pieces left</h2>
+          <p class="card__desc" id="card-desc">Hand-painted in cobalt.<br>Each figurine is numbered.</p>
+        </div>
+        <a class="pill" href="#"><span>✦</span>Reserve yours</a>
+      </div>
+    </aside>
+  </main>
+
+  <!-- floating label that rides next to the glaze lens -->
+  <div class="peek" id="peek" aria-hidden="true">
+    <span class="peek__num" id="peek-num">(02)</span>
+    <span class="peek__name" id="peek-name">Rose</span>
+    <span class="peek__cta">click — glaze it</span>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><i></i></div>
+  <p class="toast" id="toast" hidden>Run <code>python3 -m http.server</code> in this folder and open <code>localhost:8000</code> for the full WebGL effect.</p>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
